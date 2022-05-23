@@ -4,7 +4,67 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta name="author" content="John Doe" />
+    <link rel="stylesheet" href="styles/index.css" />
+    <title>Dating app - Front page</title>
   </head>
-  <body></body>
+  <body>
+    <header>
+      <div class="header">
+        <div class="header__logo-wrapper">
+          <a href="index.html" class="header__logo-link">Dating app</a>
+        </div>
+        <nav>
+          <div>
+            <ul class="header__nav">
+              <li>
+                <a
+                  class="header__nav-link header__nav-current"
+                  href="index.html"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a class="header__nav-link" href="./contact.html"
+                  >Kontakt oss</a
+                >
+              </li>
+              <li>
+                <a
+                  class="header__nav-link header__nav-link--button"
+                  href="./buy-tickets.html"
+                  >Kjøp billetter</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="search-bar">
+        <div>
+          <label for="search-users">Search users:</label>
+          <input type="search" name="search-users" id="search-users" />
+        </div>
+        <div class="radio-container">
+          <p>Filter Gender:</p>
+          <div>
+            <input type="radio" id="male" name="gender" value="Male" />
+            <label for="male">Male</label>
+          </div>
+          <div>
+            <input type="radio" id="female" name="gender" value="Female" />
+            <label for="female">Female</label>
+          </div>
+          <div>
+            <input type="radio" id="both" name="gender" value="Both" />
+            <label for="female">Both</label>
+          </div>
+        </div>
+      </div>
+      <ul class="users-list"></ul>
+      <script type="module" src="script/index.js"></script>
+    </main>
+  </body>
 </html>
