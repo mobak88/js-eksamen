@@ -1,6 +1,6 @@
 import { fetchData, displayUsers, clearHTML, firstLetterToUpperCase, userList } from './reusable-functions.js';
 
-const ALL_USERS_API = 'https://randomuser.me/api/?results=120';
+const ALL_USERS_API = 'https://randomuser.me/api/?results=120&inc=picture,gender,name,nat,dob,location';
 const allUsersArr = [];
 
 const searchField = document.querySelector('#search-users');

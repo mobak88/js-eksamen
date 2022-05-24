@@ -1,41 +1,70 @@
-import { fetchData, clearHTML } from './reusable-functions.js';
+import { fetchData, clearHTML, firstLetterToUpperCase } from './reusable-functions.js';
 
-const USER_API = 'https://randomuser.me/api/';
+const USER_API = 'https://randomuser.me/api/?inc=picture,gender,name,nat,dob,location';
 const userArr = [];
 let userObj;
 
-const profileInfoContainer = document.querySelector('.profile-info-container');
+const profileInfoUl = document.querySelector('.profile-info-ul');
 
-function name() {
+function updateUser() {
     const saveBtn = document.querySelector('.save-btn');
-    const userCountryInput = document.querySelector('#country');
+    const userAbout = document.querySelector('#about');
+    const userAge = document.querySelector('#age');
+    const userGender = document.querySelector('#gender');
+    const userCity = document.querySelector('#city');
+    const userCountry = document.querySelector('#country');
+    const userTitle = document.querySelector('#title');
+    const userFirstName = document.querySelector('#first-name');
+    const userLastName = document.querySelector('#last-name');
 
     saveBtn.addEventListener('click', () => {
-        userObj.location.country = userCountryInput.value;
-        clearHTML(profileInfoContainer);
+        userObj = {
+            ...userObj,
+            dob: {
+                age: userAge.value.trim() === '' ? userObj.dob.age : userAge.value.trim()
+            },
+            gender: userGender.value.trim() === '' ? userObj.gender : userGender.value.trim(),
+            location: {
+                city: userCity.value.trim() === '' ? userObj.location.city : firstLetterToUpperCase(userCity.value.trim()),
+                country: userCountry.value.trim() === '' ? userObj.location.country : firstLetterToUpperCase(userCountry.value.trim())
+            },
+            name: {
+                title: userTitle.value.trim() === '' ? userObj.name.title : firstLetterToUpperCase(userTitle.value.trim()),
+                first: userFirstName.value.trim() === '' ? userObj.name.first : firstLetterToUpperCase(userFirstName.value.trim()),
+                last: userLastName.value.trim() === '' ? userObj.name.last : firstLetterToUpperCase(userLastName.value.trim()),
+            },
+            about: userAbout.value.trim() === '' ? userObj.about : userAbout.value.trim()
+        };
+
+        clearHTML(profileInfoUl);
         singleUserTemplate();
-        console.log(userObj);
     });
 }
 
 function singleUserTemplate() {
-    userObj = { ...userArr[0] };
-    profileInfoContainer.innerHTML += `
+    profileInfoUl.innerHTML += `
         <li class='user-li'>
             <img class='user-img' src=${userObj.picture.large} />
             <p class='user-name'>Name: ${userObj.name.first} ${userObj.name.last}</p>
-            <p>Gender: ${userObj.gender}</p>
+            <p>Gender: ${firstLetterToUpperCase(userObj.gender)}</p>
             <p>Title: ${userObj.name.title}</p>
             <p>Age: ${userObj.dob.age}</p>
             <p>City: ${userObj.location.city}</p>
             <p class='user-country'>Country: ${userObj.location.country}</p>
-            <p class='user-about'>${userObj.about ? userObj.about : ''}</p>
+            <p class='user-about'>${userObj.about === '' ? '' : 'About: ' + userObj.about}</p>
         </li>
     `;
 
 }
 
-fetchData(USER_API, userArr, singleUserTemplate);
+function singleUserHandler() {
+    userObj = { ...userArr[0], about: '' };
+    singleUserTemplate();
+}
 
-name();
+fetchData(USER_API, userArr, singleUserHandler);
+
+updateUser();
+
+
 

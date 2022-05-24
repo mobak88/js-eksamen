@@ -16,6 +16,7 @@
   background-color: rgb(236, 240, 243);
   padding: 32px;
   gap: 30px;
+  min-height: 100vh;
 }
 
 .profile-info-container {
@@ -36,4 +37,9 @@
 .text-about {
   display: flex;
   flex-direction: column;
+}
+
+.user-about {
+  max-width: 300px;
+  word-wrap: break-word;
 }
