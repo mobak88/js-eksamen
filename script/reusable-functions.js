@@ -13,13 +13,16 @@ export async function fetchData(apiData, arr, callback) {
 }
 
 function usersTemplate(user) {
-    return userList.innerHTML += `
+    userList.innerHTML += `
             <li class='user-li'>
                 <img class='user-img' src=${user.picture.large} />
-                <p>${user.name.first} ${user.name.last} </p>
-                <p>${user.gender}</p>
-                <p>${user.dob.age}</p>
-                <button>See Profile</button>
+                <p>Name: ${user.name.first} ${user.name.last}</p>
+                <p>Gender: ${user.gender}</p>
+                <p>Age: ${user.dob.age}</p>
+                <p>City: ${user.location.city}</p>
+                <p>Country: ${user.location.country}</p>
+                <button class='see-profile'>See Profile</button>
+                <img class='heart' src='../assets/heart-unfilled.png' />
             </li>
         `;
 }

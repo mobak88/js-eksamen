@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.profile-container {
+  display: flex;
+}
+
+.edit-profile-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(236, 240, 243);
+  padding: 32px;
+  gap: 30px;
+}
+
+.profile-info-container {
+  width: 50%;
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px;
+}
+
+.edit-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.text-about {
+  display: flex;
+  flex-direction: column;
+}

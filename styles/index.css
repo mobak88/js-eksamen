@@ -11,30 +11,6 @@ main {
   gap: 30px;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100px;
-  background-color: #24292f;
-  padding: 0 40px;
-}
-
-.header__logo-link {
-  text-decoration: none;
-  font-size: 30px;
-  color: #fff;
-}
-
-.header__nav {
-  display: flex;
-  gap: 20px;
-}
-
-li {
-  list-style: none;
-}
-
 .search-bar {
   height: 60px;
   display: flex;
@@ -56,14 +32,6 @@ li {
   cursor: pointer;
 }
 
-.header__nav-link {
-  text-decoration: none;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  color: #fff;
-}
-
 .users-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -76,7 +44,7 @@ li {
   flex-direction: column;
   background-color: rgb(236, 240, 243);
   padding: 25px 12px;
-  width: 180px;
+  width: 200px;
   gap: 12px;
   align-items: center;
 }
@@ -84,4 +52,16 @@ li {
 .user-img {
   width: 128px;
   height: 128px;
+}
+
+.see-profile {
+  padding: 10px;
+  background-color: #fff;
+  border: none;
+}
+
+.heart {
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
 }

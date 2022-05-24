@@ -1,4 +1,4 @@
-import { fetchData, displayUsers, clearHTML, firstLetterToUpperCase, userList } from './functions.js';
+import { fetchData, displayUsers, clearHTML, firstLetterToUpperCase, userList } from './reusable-functions.js';
 
 const ALL_USERS_API = 'https://randomuser.me/api/?results=120';
 const allUsersArr = [];
