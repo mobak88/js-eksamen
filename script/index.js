@@ -1,6 +1,6 @@
 import { fetchData, displayUsers, clearHTML, firstLetterToUpperCase, userList, allUsersArr, checkLoggedInStatus } from './reusable-functions.js';
 
-const ALL_USERS_API = 'https://randomuser.me/api/?results=120&inc=picture,gender,name,nat,dob,location';
+const ALL_USERS_API = 'https://randomuser.me/api/?results=150&inc=picture,gender,name,nat,dob,location';
 
 const searchField = document.querySelector('#search-users');
 const radioBtnMale = document.querySelector('#male');

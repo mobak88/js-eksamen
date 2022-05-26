@@ -46,6 +46,5 @@ function displayForm() {
 
 }
 
-
 validateForm();
 displayForm();

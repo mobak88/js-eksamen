@@ -2,16 +2,26 @@
   padding: 10px;
   border: none;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .other-users {
   display: flex;
   justify-content: center;
-  margin-top: 40px;
 }
 
 .user-li {
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+#map {
+  height: 450px;
+}
+
+.other-user-container {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
 }

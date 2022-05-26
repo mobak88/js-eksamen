@@ -40,7 +40,6 @@ function likeProfile(arr) {
         heart.addEventListener('click', () => {
             if (allUsersArr[i].like === false || allUsersArr[i].like === undefined) {
                 allUsersArr[i].like = true;
-
                 hearts[i].src = '../assets/heart-filled.png';
             } else if (allUsersArr[i].like === true) {
                 allUsersArr[i].like = false;
