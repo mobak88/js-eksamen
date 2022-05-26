@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -7,23 +13,34 @@
   padding: 0 40px;
 }
 
-.header__logo-link {
+.header-logo-link {
   text-decoration: none;
   font-size: 30px;
   color: #fff;
 }
 
-.header__nav {
+.header-nav {
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 
-.header__nav-link {
+.header-nav-link {
   text-decoration: none;
   font-size: 20px;
   display: flex;
   align-items: center;
   color: #fff;
+}
+
+.header-nav-btn {
+  font-size: 16px;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #fff;
+  color: #24292f;
+  text-decoration: none;
 }
 
 li {

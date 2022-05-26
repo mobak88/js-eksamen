@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="John Doe" />
-    <link rel="stylesheet" href="styles/index.css" />
+    <link rel="stylesheet" href="styles/logged-out.css" />
     <link rel="stylesheet" href="styles/header.css" />
-    <title>Dating app - Front page</title>
+    <title>Log In</title>
   </head>
   <body>
     <header>
@@ -28,7 +28,7 @@
                 <a class="header-nav-link" href="login.html">Login</a>
               </li>
               <li>
-                <a class="header-nav-btn" href="logged-out.html"> Logout </a>
+                <button class="header-nav-btn" href="">Logout</button>
               </li>
             </ul>
           </div>
@@ -36,29 +36,8 @@
       </div>
     </header>
     <main>
-      <div class="search-bar">
-        <div>
-          <label for="search-users">Search users:</label>
-          <input type="search" name="search-users" id="search-users" />
-        </div>
-        <div class="radio-container">
-          <p>Filter Gender:</p>
-          <div>
-            <input type="radio" id="male" name="gender" value="Male" />
-            <label for="male">Male</label>
-          </div>
-          <div>
-            <input type="radio" id="female" name="gender" value="Female" />
-            <label for="female">Female</label>
-          </div>
-          <div>
-            <input type="radio" id="both" name="gender" value="Both" />
-            <label for="female">Both</label>
-          </div>
-        </div>
-      </div>
-      <ul class="users-list"></ul>
-      <script type="module" src="script/index.js"></script>
+      <h1>You have been logged out</h1>
     </main>
+    <script type="module" src="script/logged-out.js"></script>
   </body>
 </html>

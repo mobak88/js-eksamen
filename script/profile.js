@@ -1,10 +1,46 @@
-import { fetchData, clearHTML, firstLetterToUpperCase } from './reusable-functions.js';
+import { fetchData, clearHTML, firstLetterToUpperCase, setLocalStorage, checkLoggedInStatus } from './reusable-functions.js';
 
 const USER_API = 'https://randomuser.me/api/?inc=picture,gender,name,nat,dob,location';
 const userArr = [];
 let userObj;
 
 const profileInfoUl = document.querySelector('.profile-info-ul');
+
+function singleUserTemplate() {
+    profileInfoUl.innerHTML += `
+        <li class='user-li'>
+            <img class='user-img' src=${userObj.picture.large} />
+            <p class='user-name'>Name: ${userObj.name.first} ${userObj.name.last}</p>
+            <p>Gender: ${firstLetterToUpperCase(userObj.gender)}</p>
+            <p>Title: ${userObj.name.title}</p>
+            <p>Age: ${userObj.dob.age}</p>
+            <p>City: ${userObj.location.city}</p>
+            <p class='user-country'>Country: ${userObj.location.country}</p>
+            <p class='user-about'>${userObj.about === '' ? '' : 'About: ' + userObj.about}</p>
+        </li>
+    `;
+}
+
+function displaySIngleUser() {
+    if (localStorage.getItem('userData') === null) {
+        userObj = { ...userArr[0], about: '' };
+        setLocalStorage('userData', userObj);
+    } else {
+        userObj = JSON.parse(localStorage.getItem('userData'));
+    }
+
+    singleUserTemplate();
+}
+
+function checkIfSingleUserExist() {
+    if (localStorage.getItem('userData') === null) {
+        fetchData(USER_API, userArr, profileInfoUl, displaySIngleUser);
+    } else {
+        displaySIngleUser();
+    }
+}
+
+checkLoggedInStatus(checkIfSingleUserExist);
 
 function updateUser() {
     const saveBtn = document.querySelector('.save-btn');
@@ -37,32 +73,10 @@ function updateUser() {
         };
 
         clearHTML(profileInfoUl);
+        setLocalStorage('userData', userObj);
         singleUserTemplate();
     });
 }
-
-function singleUserTemplate() {
-    profileInfoUl.innerHTML += `
-        <li class='user-li'>
-            <img class='user-img' src=${userObj.picture.large} />
-            <p class='user-name'>Name: ${userObj.name.first} ${userObj.name.last}</p>
-            <p>Gender: ${firstLetterToUpperCase(userObj.gender)}</p>
-            <p>Title: ${userObj.name.title}</p>
-            <p>Age: ${userObj.dob.age}</p>
-            <p>City: ${userObj.location.city}</p>
-            <p class='user-country'>Country: ${userObj.location.country}</p>
-            <p class='user-about'>${userObj.about === '' ? '' : 'About: ' + userObj.about}</p>
-        </li>
-    `;
-
-}
-
-function singleUserHandler() {
-    userObj = { ...userArr[0], about: '' };
-    singleUserTemplate();
-}
-
-fetchData(USER_API, userArr, singleUserHandler);
 
 updateUser();
 

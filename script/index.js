@@ -1,11 +1,15 @@
-import { fetchData, displayUsers, clearHTML, firstLetterToUpperCase, userList } from './reusable-functions.js';
+import { fetchData, displayUsers, clearHTML, firstLetterToUpperCase, userList, allUsersArr, checkLoggedInStatus } from './reusable-functions.js';
 
 const ALL_USERS_API = 'https://randomuser.me/api/?results=120&inc=picture,gender,name,nat,dob,location';
-const allUsersArr = [];
 
 const searchField = document.querySelector('#search-users');
+const radioBtnMale = document.querySelector('#male');
+const radioBtnFemale = document.querySelector('#female');
+const radioBtnBoth = document.querySelector('#both');
 
-fetchData(ALL_USERS_API, allUsersArr, displayUsers);
+checkLoggedInStatus(() => {
+    fetchData(ALL_USERS_API, allUsersArr, userList, displayUsers);
+});
 
 function validateSearch(userInput, users) {
     if (!isNaN(parseInt(userInput))) {
@@ -20,12 +24,24 @@ function validateSearch(userInput, users) {
 
 function filterUserNames(arr) {
     const searchString = document.querySelector('#search-users').value.toLowerCase();
+    let filteredUsers;
 
     clearHTML(userList);
 
-    const filteredUsers = arr.filter(user => {
-        return (user.name.first.toLowerCase().includes(searchString) || user.name.last.toLowerCase().includes(searchString));
-    });
+    if (radioBtnMale.checked === true) {
+        filteredUsers = arr.filter(user => {
+            return (user.gender === 'male' && (user.name.first.toLowerCase().includes(searchString) || user.name.last.toLowerCase().includes(searchString)));
+        });
+
+    } else if (radioBtnFemale.checked === true) {
+        filteredUsers = arr.filter(user => {
+            return (user.gender === 'female' && (user.name.first.toLowerCase().includes(searchString) || user.name.last.toLowerCase().includes(searchString)));
+        });
+    } else {
+        filteredUsers = arr.filter(user => {
+            return (user.name.first.toLowerCase().includes(searchString) || user.name.last.toLowerCase().includes(searchString));
+        });
+    }
 
     userList.classList.add('users-list');
 
@@ -52,17 +68,14 @@ function filterGender(arr, radioBtn) {
     displayUsers(filteredGender);
 }
 
-const radioBtnMale = document.querySelector('#male');
 radioBtnMale.addEventListener('click', () => {
     filterGender(allUsersArr, radioBtnMale);
 });
 
-const radioBtnFemale = document.querySelector('#female');
 radioBtnFemale.addEventListener('click', () => {
     filterGender(allUsersArr, radioBtnFemale);
 });
 
-const radioBtnBoth = document.querySelector('#both');
 radioBtnBoth.addEventListener('click', () => {
     filterGender(allUsersArr, radioBtnBoth);
 });

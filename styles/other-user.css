@@ -1,0 +1,17 @@
+.go-back-btn {
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.other-users {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.user-li {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
