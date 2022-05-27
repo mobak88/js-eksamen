@@ -5,6 +5,7 @@ const userArr = [];
 let userObj;
 
 const profileInfoUl = document.querySelector('.profile-info-ul');
+const newInfoContainer = document.querySelector('.new-info-container');
 
 function singleUserTemplate() {
     profileInfoUl.innerHTML += `
@@ -21,15 +22,65 @@ function singleUserTemplate() {
     `;
 }
 
+function displayNewUserInfo() {
+    const { addedInfo } = userObj;
+
+    addedInfo.forEach(el => {
+        const newEl = document.createElement('p');
+        const newElDiv = document.createElement('div');
+        newElDiv.classList.add('new-el-div');
+        const newElDeleteBtn = document.createElement('button');
+        newElDeleteBtn.classList.add('delete-btn');
+        newElDeleteBtn.innerText = 'Delete';
+        newInfoContainer.append(newElDiv);
+        newElDiv.append(newEl);
+        newElDiv.append(newElDeleteBtn);
+        newEl.append(el.info);
+    });
+
+    deleteUserInfo();
+    setLocalStorage('userData', userObj);
+}
+
+function addNewUserInfo() {
+    const btn = document.querySelector('.btn');
+    const input = document.querySelector('#new');
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (input.value !== '') {
+            userObj.addedInfo.push({ info: input.value });
+            clearHTML(newInfoContainer);
+            displayNewUserInfo(input.value);
+        } else {
+            alert('New userInfo can\'t be empty');
+        }
+    });
+}
+
+function deleteUserInfo() {
+    const deleteBtns = document.querySelectorAll('.delete-btn');
+    const { addedInfo } = userObj;
+    deleteBtns.forEach((btn, i) => {
+        btn.addEventListener('click', () => {
+            addedInfo.splice(i, 1);
+            clearHTML(newInfoContainer);
+            displayNewUserInfo();
+        });
+    });
+}
+
 function displaySIngleUser() {
     if (localStorage.getItem('userData') === null) {
-        userObj = { ...userArr[0], about: '' };
+        userObj = { ...userArr[0], about: '', addedInfo: [] };
         setLocalStorage('userData', userObj);
     } else {
         userObj = JSON.parse(localStorage.getItem('userData'));
     }
 
     singleUserTemplate();
+    displayNewUserInfo();
+    addNewUserInfo();
+    deleteUserInfo();
 }
 
 function checkIfSingleUserExist() {
@@ -53,7 +104,8 @@ function updateUser() {
     const userFirstName = document.querySelector('#first-name');
     const userLastName = document.querySelector('#last-name');
 
-    saveBtn.addEventListener('click', () => {
+    saveBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         userObj = {
             ...userObj,
             dob: {

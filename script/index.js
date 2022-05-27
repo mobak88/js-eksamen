@@ -1,4 +1,4 @@
-import { fetchData, displayUsers, clearHTML, firstLetterToUpperCase, userList, allUsersArr, checkLoggedInStatus } from './reusable-functions.js';
+import { fetchData, displayUsers, clearHTML, firstLetterToUpperCase, usersList, allUsersArr, checkLoggedInStatus } from './reusable-functions.js';
 
 const ALL_USERS_API = 'https://randomuser.me/api/?results=150&inc=picture,gender,name,nat,dob,location';
 
@@ -8,17 +8,17 @@ const radioBtnFemale = document.querySelector('#female');
 const radioBtnBoth = document.querySelector('#both');
 
 checkLoggedInStatus(() => {
-    fetchData(ALL_USERS_API, allUsersArr, userList, displayUsers);
+    fetchData(ALL_USERS_API, allUsersArr, usersList, displayUsers);
 });
 
 function validateSearch(userInput, users) {
     if (!isNaN(parseInt(userInput))) {
-        userList.classList.remove('users-list');
-        userList.innerHTML = `<li>Use only letters!</li>`;
+        usersList.classList.remove('users-list');
+        usersList.innerHTML = `<li>Use only letters!</li>`;
     } else if (users.length < 1) {
-        userList.classList.remove('users-list');
+        usersList.classList.remove('users-list');
         const formattedSearchString = firstLetterToUpperCase(userInput);
-        userList.innerHTML = `<li>${formattedSearchString} not found, please try a different search query!</li>`;
+        usersList.innerHTML = `<li>${formattedSearchString} not found, please try a different search query!</li>`;
     }
 }
 
@@ -26,7 +26,7 @@ function filterUserNames(arr) {
     const searchString = document.querySelector('#search-users').value.toLowerCase();
     let filteredUsers;
 
-    clearHTML(userList);
+    clearHTML(usersList);
 
     if (radioBtnMale.checked === true) {
         filteredUsers = arr.filter(user => {
@@ -43,7 +43,7 @@ function filterUserNames(arr) {
         });
     }
 
-    userList.classList.add('users-list');
+    usersList.classList.add('users-list');
 
     displayUsers(filteredUsers);
     validateSearch(searchString, filteredUsers);
@@ -64,7 +64,7 @@ function filterGender(arr, radioBtn) {
         });
     }
 
-    clearHTML(userList);
+    clearHTML(usersList);
     displayUsers(filteredGender);
 }
 

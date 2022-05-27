@@ -39,7 +39,7 @@ function displayUserMap(lat, lon) {
 
 /* I had to get city coord with geolocation because the coords provided by the
    randomuser API gave wrong coords.
-   also if the below tile API does not work try to replace it with the free api: https://stamen-tiles.a.ssl.fastly.net/toner/{z}/{x}/{y}.png */
+   Also if the below tile API does not work try to replace it with the free api: https://stamen-tiles.a.ssl.fastly.net/toner/{z}/{x}/{y}.png */
 async function getCityCoords() {
     try {
         const geolocationAPI = `https://nominatim.openstreetmap.org/?addressdetails=1&q=${allUsersLocal[i].location.city}&format=json&limit=1`;

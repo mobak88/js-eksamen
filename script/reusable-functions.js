@@ -1,4 +1,4 @@
-export const userList = document.querySelector('.users-list');
+export const usersList = document.querySelector('.users-list');
 export const allUsersArr = JSON.parse(localStorage.getItem('allUsers')) || [];
 export const port = window.location.port;
 
@@ -19,7 +19,7 @@ export async function fetchData(apiData, arr, el, callback) {
 }
 
 function usersTemplate(user) {
-    userList.innerHTML += `
+    usersList.innerHTML += `
             <li class='user-li'>
                 <img class='user-img' src=${user.picture.large} />
                 <p>Name: ${user.name.first} ${user.name.last}</p>

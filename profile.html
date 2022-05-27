@@ -43,7 +43,7 @@
             The fields that you change/fill in affects the users, if you leave
             some empty it will update the ones you changed/filled
           </p>
-          <div class="edit-profile" action="">
+          <form class="edit-profile">
             <div>
               <label for="first-name">First Name</label>
               <input type="text" id="first-name" />
@@ -81,11 +81,17 @@
               <textarea type="text" rows="5" id="about"></textarea>
             </div>
             <button class="save-btn">Save</button>
-          </div>
+          </form>
+          <form>
+            <label for="new">New Info</label>
+            <input type="text" id="new" />
+            <button class="btn">Display</button>
+          </form>
         </div>
         <div class="profile-info-container">
           <h2>Your Profile</h2>
           <ul class="profile-info-ul"></ul>
+          <div class="new-info-container"></div>
         </div>
       </div>
     </main>

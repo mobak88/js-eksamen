@@ -37,3 +37,29 @@
   max-width: 300px;
   word-wrap: break-word;
 }
+
+.new-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.new-el-div {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(236, 240, 243);
+  padding: 12px;
+  max-width: 500px;
+  word-wrap: break-word;
+}
+
+.new-el-div > p {
+  max-width: 70%;
+}
+
+.delete-btn {
+  padding: 4px;
+  cursor: pointer;
+}
