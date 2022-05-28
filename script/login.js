@@ -20,7 +20,7 @@ function validateForm() {
             /* Used settimeout here to give the user a chance to see the success msg */
             setTimeout(() => {
                 document.location.href = `http://localhost:${port}`;
-            }, 500);
+            }, 200);
         } else if (typedUsername === userName && typedPassword !== password) {
             feedback.textContent = 'Wrong password';
             return;
@@ -44,7 +44,7 @@ function displayForm() {
         loginContainer.classList.remove('hidden');
     }
 
+    validateForm();
 }
 
-validateForm();
 displayForm();

@@ -47,15 +47,27 @@ function editNewUserInfoTemplate(i) {
             ></textarea>
         <div>
         <button class="save-new-info">Save</button>
-        <button class="cancel">Cancel</button>
+        <button class="cancel-btn">Cancel</button>
         </div>
     `;
+}
+
+function cancelEditingNewUserInfo() {
+    const cancelBtn = document.querySelector('.cancel-btn');
+
+    cancelBtn.addEventListener('click', () => {
+        clearHTML(newInfoContainer);
+        displayNewUserInfo();
+    });
 }
 
 function saveEditetNewUserInfo(i) {
     const newInfoSaveBtns = document.querySelectorAll('.save-new-info');
     const newInfoTitle = document.querySelector('#edit-new-info-title');
     const newInfoText = document.querySelector('#edit-new-info-text');
+
+    newInfoTitle.value = userObj.addedInfo[i].heading;
+    newInfoText.value = userObj.addedInfo[i].info;
 
     newInfoSaveBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
@@ -80,6 +92,7 @@ function editNewUserInfo() {
             displayNewUserInfo();
             editNewUserInfoTemplate(i);
             saveEditetNewUserInfo(i);
+            cancelEditingNewUserInfo();
         });
     });
 }

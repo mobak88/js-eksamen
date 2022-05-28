@@ -95,9 +95,12 @@ export function setLocalStorage(lsKey, lsValue) {
 }
 
 export function checkLoggedInStatus(callback) {
+    const main = document.querySelector('main');
     if (!JSON.parse(localStorage.getItem('loggedIn')) || localStorage.getItem('loggedIn') === null) {
+        main.classList.add('hidden');
         document.location.href = `http://localhost:${port}/login.html`;
     } else {
+        main.classList.remove('hidden');
         callback();
     }
 }

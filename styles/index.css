@@ -61,3 +61,7 @@ main {
   height: 36px;
   cursor: pointer;
 }
+
+.hidden {
+  display: none;
+}
