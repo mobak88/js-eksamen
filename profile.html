@@ -82,11 +82,24 @@
             </div>
             <button class="save-btn">Save</button>
           </form>
-          <form>
-            <label for="new">New Info</label>
-            <input type="text" id="new" />
-            <button class="btn">Display</button>
-          </form>
+          <div class="add-new-info-container">
+            <h2>New Info</h2>
+            <form class="add-new-info-form">
+              <div>
+                <label for="add-new-info-title">Title:</label>
+                <input type="text" id="add-new-info-title" />
+              </div>
+              <div class="add-new-info-title-container">
+                <label for="add-new-info-text">New Info:</label>
+                <textarea
+                  type="text"
+                  rows="5"
+                  id="add-new-info-text"
+                ></textarea>
+              </div>
+              <button class="btn">Add</button>
+            </form>
+          </div>
         </div>
         <div class="profile-info-container">
           <h2>Your Profile</h2>

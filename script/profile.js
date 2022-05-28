@@ -22,41 +22,6 @@ function singleUserTemplate() {
     `;
 }
 
-function displayNewUserInfo() {
-    const { addedInfo } = userObj;
-
-    addedInfo.forEach(el => {
-        const newEl = document.createElement('p');
-        const newElDiv = document.createElement('div');
-        newElDiv.classList.add('new-el-div');
-        const newElDeleteBtn = document.createElement('button');
-        newElDeleteBtn.classList.add('delete-btn');
-        newElDeleteBtn.innerText = 'Delete';
-        newInfoContainer.append(newElDiv);
-        newElDiv.append(newEl);
-        newElDiv.append(newElDeleteBtn);
-        newEl.append(el.info);
-    });
-
-    deleteUserInfo();
-    setLocalStorage('userData', userObj);
-}
-
-function addNewUserInfo() {
-    const btn = document.querySelector('.btn');
-    const input = document.querySelector('#new');
-    btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (input.value !== '') {
-            userObj.addedInfo.push({ info: input.value });
-            clearHTML(newInfoContainer);
-            displayNewUserInfo(input.value);
-        } else {
-            alert('New userInfo can\'t be empty');
-        }
-    });
-}
-
 function deleteUserInfo() {
     const deleteBtns = document.querySelectorAll('.delete-btn');
     const { addedInfo } = userObj;
@@ -66,6 +31,102 @@ function deleteUserInfo() {
             clearHTML(newInfoContainer);
             displayNewUserInfo();
         });
+    });
+}
+
+function editNewUserInfoTemplate(i) {
+    const newElDivs = document.querySelectorAll('.new-el-div');
+    newElDivs[i].innerHTML = `
+        <label for="edit-new-info-title">Title:</label>
+        <input type="text" id="edit-new-info-title" />
+        <label for="edit-new-info-text">New Info:</label>
+        <textarea
+            type="text"
+            rows="5"
+            id="edit-new-info-text"
+            ></textarea>
+        <div>
+        <button class="save-new-info">Save</button>
+        <button class="cancel">Cancel</button>
+        </div>
+    `;
+}
+
+function saveEditetNewUserInfo(i) {
+    const newInfoSaveBtns = document.querySelectorAll('.save-new-info');
+    const newInfoTitle = document.querySelector('#edit-new-info-title');
+    const newInfoText = document.querySelector('#edit-new-info-text');
+
+    newInfoSaveBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            if (newInfoTitle.value.trim() !== '' && newInfoText.value.trim() !== '') {
+                userObj.addedInfo[i] = { heading: newInfoTitle.value.trim(), info: newInfoText.value };
+                console.log(userObj);
+                clearHTML(newInfoContainer);
+                displayNewUserInfo();
+            } else {
+                alert('Edited userInfo can\'t be empty, you need to fill in both title and info');
+            }
+        });
+    });
+}
+
+function editNewUserInfo() {
+    const newElEditBtns = document.querySelectorAll('.edit-btn');
+
+    newElEditBtns.forEach((btn, i) => {
+        btn.addEventListener('click', () => {
+            clearHTML(newInfoContainer);
+            displayNewUserInfo();
+            editNewUserInfoTemplate(i);
+            saveEditetNewUserInfo(i);
+        });
+    });
+}
+
+function displayNewUserInfo() {
+    const { addedInfo } = userObj;
+
+    addedInfo.forEach(el => {
+        const newElText = document.createElement('p');
+        const newElTitle = document.createElement('h2');
+        const newElDiv = document.createElement('div');
+        const newElDeleteBtn = document.createElement('button');
+        const newElEditBtn = document.createElement('button');
+
+        newElDiv.classList.add('new-el-div');
+        newElDeleteBtn.classList.add('delete-btn');
+        newElEditBtn.classList.add('edit-btn');
+
+        newElDeleteBtn.innerText = 'Delete';
+        newElEditBtn.innerText = 'Edit';
+
+        newInfoContainer.append(newElDiv);
+        newElDiv.append(newElTitle, newElText, newElEditBtn, newElDeleteBtn);
+        newElTitle.append(el.heading);
+        newElText.append(el.info);
+    });
+
+    deleteUserInfo();
+    editNewUserInfo();
+    setLocalStorage('userData', userObj);
+}
+
+function addNewUserInfo() {
+    const btn = document.querySelector('.btn');
+    const newInfoTitle = document.querySelector('#add-new-info-title');
+    const newInfoText = document.querySelector('#add-new-info-text');
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (newInfoText.value.trim() !== '' && newInfoTitle.value.trim() !== '') {
+            userObj.addedInfo.push({ heading: firstLetterToUpperCase(newInfoTitle.value.trim()), info: newInfoText.value.trim() });
+            newInfoTitle.value = '';
+            newInfoText.value = '';
+            clearHTML(newInfoContainer);
+            displayNewUserInfo();
+        } else {
+            alert('New userInfo can\'t be empty, you need to fill in both title and info');
+        }
     });
 }
 
@@ -80,7 +141,6 @@ function displaySIngleUser() {
     singleUserTemplate();
     displayNewUserInfo();
     addNewUserInfo();
-    deleteUserInfo();
 }
 
 function checkIfSingleUserExist() {

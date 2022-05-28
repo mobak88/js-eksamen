@@ -46,12 +46,14 @@
 
 .new-el-div {
   display: flex;
-  gap: 8px;
+  flex-direction: column;
+  gap: 12px;
   align-items: center;
   justify-content: space-between;
   background-color: rgb(236, 240, 243);
   padding: 12px;
   max-width: 500px;
+  min-width: 280px;
   word-wrap: break-word;
 }
 
@@ -59,7 +61,26 @@
   max-width: 70%;
 }
 
-.delete-btn {
+.delete-btn,
+.edit-btn {
   padding: 4px;
   cursor: pointer;
+}
+
+.add-new-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.add-new-info-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.add-new-info-title-container {
+  display: flex;
+  flex-direction: column;
 }
