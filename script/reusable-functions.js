@@ -33,18 +33,21 @@ function usersTemplate(user) {
         `;
 }
 
-function likeProfile(arr) {
-    const hearts = document.querySelectorAll('.heart');
+export function likeProfile(i, el) {
+    if (allUsersArr[i].like === false || allUsersArr[i].like === undefined) {
+        allUsersArr[i].like = true;
+        el.src = '../assets/heart-filled.png';
+    } else if (allUsersArr[i].like === true) {
+        allUsersArr[i].like = false;
+        el.src = '../assets/heart-unfilled.png';
+    }
+}
 
+function likeProfileHandler(arr) {
+    const hearts = document.querySelectorAll('.heart');
     hearts.forEach((heart, i) => {
         heart.addEventListener('click', () => {
-            if (allUsersArr[i].like === false || allUsersArr[i].like === undefined) {
-                allUsersArr[i].like = true;
-                hearts[i].src = '../assets/heart-filled.png';
-            } else if (allUsersArr[i].like === true) {
-                allUsersArr[i].like = false;
-                hearts[i].src = '../assets/heart-unfilled.png';
-            }
+            likeProfile(i, heart);
             setLocalStorage('allUsers', arr);
         });
     });
@@ -79,7 +82,7 @@ export function displayUsers(arr) {
     });
 
     seeProfile(arr);
-    likeProfile(arr);
+    likeProfileHandler(arr);
 }
 
 export function clearHTML(element) {

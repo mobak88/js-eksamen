@@ -25,3 +25,9 @@
   flex-direction: column;
   gap: 100px;
 }
+
+.heart {
+  width: 64px;
+  height: 64px;
+  cursor: pointer;
+}
