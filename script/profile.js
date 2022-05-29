@@ -1,6 +1,6 @@
 import { fetchData, clearHTML, firstLetterToUpperCase, setLocalStorage, checkLoggedInStatus, allUsersArr, likeProfileHandler, seeProfile } from './reusable-functions.js';
 
-const USER_API = 'https://randomuser.me/api/?inc=picture,gender,name,nat,dob,location';
+const USER_API = 'https://randomuser.me/api/?inc=picture,gender,name,nat,dob,location,login';
 const userArr = [];
 let userObj;
 
@@ -160,16 +160,16 @@ function displaySIngleUser() {
 function likedProfilesTemplate(user) {
     const likedProfilesUl = document.querySelector('.liked-profiles-ul');
     likedProfilesUl.innerHTML += `
-        <li class='liked-profile-li'>
+        <li class='liked-profile-li' id=${user.login.uuid}>
             <div class='liked-profile-info-container'>
                 <img class='user-img' src=${user.picture.thumbnail} />
                 <div>
                     <p class='name'>Name: ${user.name.first} ${user.name.last}</p>
                     <p>Age: ${user.dob.age}</p>
                 </div>
-                <img class='heart' src=${user.like === true ? '../assets/heart-filled.png' : '../assets/heart-unfilled.png'} />
             </div>
             <button class='see-profile-btn'>See Profile</button>
+            <img class='heart' src=${user.like === true ? '../assets/heart-filled.png' : '../assets/heart-unfilled.png'} />
         </li>
     `;
 }
@@ -181,7 +181,7 @@ function displayLikedProfiles(arr) {
         likedProfilesTemplate(likedUser);
     });
 
-    likeProfileHandler(allUsersArr);
+    likeProfileHandler();
     const seeProfileBtn = document.querySelectorAll('.see-profile-btn');
     seeProfile(likedProfiles, seeProfileBtn);
 }
