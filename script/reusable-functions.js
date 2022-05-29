@@ -22,7 +22,7 @@ function usersTemplate(user) {
     usersList.innerHTML += `
             <li class='user-li'>
                 <img class='user-img' src=${user.picture.large} />
-                <p>Name: ${user.name.first} ${user.name.last}</p>
+                <p class='name'>Name: ${user.name.first} ${user.name.last}</p>
                 <p>Gender: ${user.gender}</p>
                 <p>Age: ${user.dob.age}</p>
                 <p>City: ${user.location.city}</p>
@@ -33,22 +33,34 @@ function usersTemplate(user) {
         `;
 }
 
+
+
 export function likeProfile(i, el) {
-    if (allUsersArr[i].like === false || allUsersArr[i].like === undefined) {
-        allUsersArr[i].like = true;
+    if (allUsersArr[findIndexByName(i)].like === false || allUsersArr[findIndexByName(i)].like === undefined) {
+        allUsersArr[findIndexByName(i)].like = true;
         el.src = '../assets/heart-filled.png';
-    } else if (allUsersArr[i].like === true) {
-        allUsersArr[i].like = false;
+    } else if (allUsersArr[findIndexByName(i)].like === true) {
+        allUsersArr[findIndexByName(i)].like = false;
         el.src = '../assets/heart-unfilled.png';
     }
 }
 
-function likeProfileHandler(arr) {
+function findIndexByName(i) {
+    const name = document.querySelectorAll('.name');
+
+    const firstAndLast = name[i].textContent.slice(6);
+    const [firstName, lastName] = firstAndLast.split(' ');
+
+    const objMatch = allUsersArr.find(el => el.name.first === firstName && el.name.last === lastName);
+    return allUsersArr.indexOf(objMatch);
+}
+
+export function likeProfileHandler() {
     const hearts = document.querySelectorAll('.heart');
     hearts.forEach((heart, i) => {
         heart.addEventListener('click', () => {
             likeProfile(i, heart);
-            setLocalStorage('allUsers', arr);
+            setLocalStorage('allUsers', allUsersArr);
         });
     });
 }
@@ -61,12 +73,10 @@ function displayErr(el, err) {
    or it will not work.
    Ideally i would have used a server, framework or template engine to generate dynamic pages for the users.
    This is a hack to go around these limitations */
-function seeProfile(arr) {
-    const seeprofileBtns = document.querySelectorAll('.see-profile');
-
+export function seeProfile(arr, el) {
     for (let i = 0; i < arr.length; i++) {
-        seeprofileBtns[i].addEventListener('click', () => {
-            setLocalStorage('otherUser', i);
+        el[i].addEventListener('click', () => {
+            setLocalStorage('otherUser', findIndexByName(i));
             document.location.href = `http://localhost:${port}/other-user.html`;
         });
     }
@@ -81,7 +91,8 @@ export function displayUsers(arr) {
         usersTemplate(user);
     });
 
-    seeProfile(arr);
+    const seeprofileBtns = document.querySelectorAll('.see-profile');
+    seeProfile(arr, seeprofileBtns);
     likeProfileHandler(arr);
 }
 

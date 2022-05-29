@@ -16,10 +16,14 @@
 .profile-info-container {
   width: 50%;
   display: flex;
-  gap: 30px;
+  gap: 40px;
   flex-direction: column;
   align-items: center;
   padding: 32px;
+}
+
+.profile-info-ul {
+  margin-top: 30px;
 }
 
 .edit-profile {
@@ -39,8 +43,6 @@
 }
 
 .new-info-container {
-  display: flex;
-  flex-direction: column;
   gap: 16px;
 }
 
@@ -87,4 +89,42 @@
 
 .hidden {
   display: none;
+}
+
+.liked-profiles-ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.liked-profile-li {
+  background-color: rgb(236, 240, 243);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.heart {
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+}
+
+.new-info-container,
+.liked-profiles-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.liked-profile-info-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.see-profile-btn {
+  cursor: pointer;
 }

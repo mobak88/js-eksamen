@@ -32,7 +32,6 @@ function filterUserNames(arr) {
         filteredUsers = arr.filter(user => {
             return (user.gender === 'male' && (user.name.first.toLowerCase().includes(searchString) || user.name.last.toLowerCase().includes(searchString)));
         });
-
     } else if (radioBtnFemale.checked === true) {
         filteredUsers = arr.filter(user => {
             return (user.gender === 'female' && (user.name.first.toLowerCase().includes(searchString) || user.name.last.toLowerCase().includes(searchString)));

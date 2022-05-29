@@ -1,4 +1,4 @@
-import { fetchData, clearHTML, firstLetterToUpperCase, setLocalStorage, checkLoggedInStatus } from './reusable-functions.js';
+import { fetchData, clearHTML, firstLetterToUpperCase, setLocalStorage, checkLoggedInStatus, allUsersArr, likeProfileHandler, seeProfile } from './reusable-functions.js';
 
 const USER_API = 'https://randomuser.me/api/?inc=picture,gender,name,nat,dob,location';
 const userArr = [];
@@ -154,6 +154,36 @@ function displaySIngleUser() {
     singleUserTemplate();
     displayNewUserInfo();
     addNewUserInfo();
+    displayLikedProfiles(allUsersArr);
+}
+
+function likedProfilesTemplate(user) {
+    const likedProfilesUl = document.querySelector('.liked-profiles-ul');
+    likedProfilesUl.innerHTML += `
+        <li class='liked-profile-li'>
+            <div class='liked-profile-info-container'>
+                <img class='user-img' src=${user.picture.thumbnail} />
+                <div>
+                    <p class='name'>Name: ${user.name.first} ${user.name.last}</p>
+                    <p>Age: ${user.dob.age}</p>
+                </div>
+                <img class='heart' src=${user.like === true ? '../assets/heart-filled.png' : '../assets/heart-unfilled.png'} />
+            </div>
+            <button class='see-profile-btn'>See Profile</button>
+        </li>
+    `;
+}
+
+function displayLikedProfiles(arr) {
+    const likedProfiles = arr.filter(arr => arr.like === true);
+
+    likedProfiles.forEach((likedUser) => {
+        likedProfilesTemplate(likedUser);
+    });
+
+    likeProfileHandler(allUsersArr);
+    const seeProfileBtn = document.querySelectorAll('.see-profile-btn');
+    seeProfile(likedProfiles, seeProfileBtn);
 }
 
 function checkIfSingleUserExist() {
