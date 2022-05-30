@@ -14,6 +14,7 @@ async function getQuizData(arr) {
         .then(data => console.log(data[0].answers));
 }
 
+
 /* Need ranNum as parameter to decide what quiz answer each user gets */
 function pushQuizData(arr) {
     arr.forEach(user => {
@@ -31,7 +32,6 @@ function pushQuizData(arr) {
 function checkIfUsersExist() {
     if (localStorage.getItem('allUsers') === null) {
         fetchData(ALL_USERS_API, allUsersArr, usersList, displayUsers);
-        console.log('test');
     } else {
         displayUsers(allUsersArr);
         pushQuizData(allUsersArr);
