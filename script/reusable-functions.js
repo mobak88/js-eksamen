@@ -2,6 +2,10 @@ export const usersList = document.querySelector('.users-list');
 export const allUsersArr = JSON.parse(localStorage.getItem('allUsers')) || [];
 export const port = window.location.port;
 
+function displayErr(el, err) {
+    el.innerHTML = `Something went wrong: ${err}`;
+}
+
 export async function fetchData(apiData, arr, el, callback) {
     try {
         const response = await fetch(apiData);
@@ -15,6 +19,7 @@ export async function fetchData(apiData, arr, el, callback) {
     }
     catch (err) {
         displayErr(el, err);
+        console.log(err);
     }
 }
 
@@ -71,10 +76,6 @@ export function likeProfileHandler() {
             setLocalStorage('allUsers', allUsersArr);
         });
     });
-}
-
-function displayErr(el, err) {
-    el.innerHTML = `Something went wrong: ${err}`;
 }
 
 /* This is a hack to simulate dynamic pages, it is IMPORTANT that you view the site from localhost (not your ip adress),
