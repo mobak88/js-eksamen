@@ -15,14 +15,14 @@ function otherUserProfile() {
 
     otherUser.innerHTML = `
         <li class='user-li'>
-                <img class='user-img' src=${allUsersArr[i].picture.large} />
-                <p>Name: ${allUsersArr[i].name.first} ${allUsersArr[i].name.last}</p>
-                <p>Gender: ${allUsersArr[i].gender}</p>
-                <p>Age: ${allUsersArr[i].dob.age}</p>
-                <p>City: ${allUsersArr[i].location.city}</p>
-                <p>Country: ${allUsersArr[i].location.country}</p>
-                <img class='heart' src=${allUsersArr[i].like === true ? '../assets/heart-filled.png' : '../assets/heart-unfilled.png'} />
-            </li>
+            <img class='user-img' src=${allUsersArr[i].picture.large} />
+            <p>Name: ${allUsersArr[i].name.first} ${allUsersArr[i].name.last}</p>
+            <p>Gender: ${allUsersArr[i].gender}</p>
+            <p>Age: ${allUsersArr[i].dob.age}</p>
+            <p>City: ${allUsersArr[i].location.city}</p>
+            <p>Country: ${allUsersArr[i].location.country}</p>
+            <img class='heart' src=${allUsersArr[i].like === true ? '../assets/heart-filled.png' : '../assets/heart-unfilled.png'} />
+        </li>
     `;
 }
 

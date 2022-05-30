@@ -7,8 +7,8 @@ let userObj;
 const profileInfoUl = document.querySelector('.profile-info-ul');
 const newInfoContainer = document.querySelector('.new-info-container');
 
-function singleUserTemplate() {
-    profileInfoUl.innerHTML += `
+function singleUserTemplate(el) {
+    el.innerHTML += `
         <li class='user-li'>
             <img class='user-img' src=${userObj.picture.large} />
             <p class='user-name'>Name: ${userObj.name.first} ${userObj.name.last}</p>
@@ -73,7 +73,6 @@ function saveEditetNewUserInfo(i) {
         btn.addEventListener('click', () => {
             if (newInfoTitle.value.trim() !== '' && newInfoText.value.trim() !== '') {
                 userObj.addedInfo[i] = { heading: newInfoTitle.value.trim(), info: newInfoText.value };
-                console.log(userObj);
                 clearHTML(newInfoContainer);
                 displayNewUserInfo();
             } else {
@@ -143,23 +142,8 @@ function addNewUserInfo() {
     });
 }
 
-function displaySIngleUser() {
-    if (localStorage.getItem('userData') === null) {
-        userObj = { ...userArr[0], about: '', addedInfo: [] };
-        setLocalStorage('userData', userObj);
-    } else {
-        userObj = JSON.parse(localStorage.getItem('userData'));
-    }
-
-    singleUserTemplate();
-    displayNewUserInfo();
-    addNewUserInfo();
-    displayLikedProfiles(allUsersArr);
-}
-
-function likedProfilesTemplate(user) {
-    const likedProfilesUl = document.querySelector('.liked-profiles-ul');
-    likedProfilesUl.innerHTML += `
+function likedProfilesTemplate(user, el) {
+    el.innerHTML += `
         <li class='liked-profile-li' id=${user.login.uuid}>
             <div class='liked-profile-info-container'>
                 <img class='user-img' src=${user.picture.thumbnail} />
@@ -176,14 +160,29 @@ function likedProfilesTemplate(user) {
 
 function displayLikedProfiles(arr) {
     const likedProfiles = arr.filter(arr => arr.like === true);
+    const likedProfilesUl = document.querySelector('.liked-profiles-ul');
 
     likedProfiles.forEach((likedUser) => {
-        likedProfilesTemplate(likedUser);
+        likedProfilesTemplate(likedUser, likedProfilesUl);
     });
 
     likeProfileHandler();
     const seeProfileBtn = document.querySelectorAll('.see-profile-btn');
     seeProfile(likedProfiles, seeProfileBtn);
+}
+
+function displaySIngleUser() {
+    if (localStorage.getItem('userData') === null) {
+        userObj = { ...userArr[0], about: '', addedInfo: [] };
+        setLocalStorage('userData', userObj);
+    } else {
+        userObj = JSON.parse(localStorage.getItem('userData'));
+    }
+
+    singleUserTemplate(profileInfoUl);
+    displayNewUserInfo();
+    addNewUserInfo();
+    displayLikedProfiles(allUsersArr);
 }
 
 function checkIfSingleUserExist() {
@@ -229,11 +228,8 @@ function updateUser() {
 
         clearHTML(profileInfoUl);
         setLocalStorage('userData', userObj);
-        singleUserTemplate();
+        singleUserTemplate(profileInfoUl);
     });
 }
 
 updateUser();
-
-
-

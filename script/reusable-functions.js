@@ -18,19 +18,19 @@ export async function fetchData(apiData, arr, el, callback) {
     }
 }
 
-function usersTemplate(user) {
-    usersList.innerHTML += `
-            <li class='user-li' id=${user.login.uuid}>
-                <img class='user-img' src=${user.picture.large} />
-                <p class='name'>Name: ${user.name.first} ${user.name.last}</p>
-                <p>Gender: ${user.gender}</p>
-                <p>Age: ${user.dob.age}</p>
-                <p>City: ${user.location.city}</p>
-                <p>Country: ${user.location.country}</p>
-                <button class='see-profile'>See Profile</button>
-                <img class='heart' src=${user.like === true ? '../assets/heart-filled.png' : '../assets/heart-unfilled.png'} />
-            </li>
-        `;
+function usersTemplate(user, el) {
+    el.innerHTML += `
+        <li class='user-li' id=${user.login.uuid}>
+            <img class='user-img' src=${user.picture.large} />
+            <p class='name'>Name: ${user.name.first} ${user.name.last}</p>
+            <p>Gender: ${user.gender}</p>
+            <p>Age: ${user.dob.age}</p>
+            <p>City: ${user.location.city}</p>
+            <p>Country: ${user.location.country}</p>
+            <button class='see-profile'>See Profile</button>
+            <img class='heart' src=${user.like === true ? '../assets/heart-filled.png' : '../assets/heart-unfilled.png'} />
+        </li>
+    `;
 }
 
 export function likeProfile(uuid, el) {
@@ -58,6 +58,10 @@ function findIndexByUuid(uuid) {
 //     const objMatch = allUsersArr.find(el => el.name.first === firstName && el.name.last === lastName);
 //     return allUsersArr.indexOf(objMatch);
 // }
+
+export function setLocalStorage(lsKey, lsValue) {
+    localStorage.setItem(lsKey, JSON.stringify(lsValue));
+}
 
 export function likeProfileHandler() {
     const hearts = document.querySelectorAll('.heart');
@@ -92,7 +96,7 @@ export function displayUsers(arr) {
     }
 
     arr.forEach((user) => {
-        usersTemplate(user);
+        usersTemplate(user, usersList);
     });
 
     const seeprofileBtns = document.querySelectorAll('.see-profile');
@@ -106,10 +110,6 @@ export function clearHTML(element) {
 
 export function firstLetterToUpperCase(userInput) {
     return userInput.charAt(0).toUpperCase() + userInput.slice(1);
-}
-
-export function setLocalStorage(lsKey, lsValue) {
-    localStorage.setItem(lsKey, JSON.stringify(lsValue));
 }
 
 export function checkLoggedInStatus(callback) {
