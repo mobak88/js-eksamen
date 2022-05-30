@@ -33,16 +33,6 @@ function usersTemplate(user, el) {
     `;
 }
 
-export function likeProfile(uuid, el) {
-    if (allUsersArr[findIndexByUuid(uuid)].like === false || allUsersArr[findIndexByUuid(uuid)].like === undefined) {
-        allUsersArr[findIndexByUuid(uuid)].like = true;
-        el.src = '../assets/heart-filled.png';
-    } else if (allUsersArr[findIndexByUuid(uuid)].like === true) {
-        allUsersArr[findIndexByUuid(uuid)].like = false;
-        el.src = '../assets/heart-unfilled.png';
-    }
-}
-
 function findIndexByUuid(uuid) {
     const objMatch = allUsersArr.find(el => el.login.uuid === uuid);
     return allUsersArr.indexOf(objMatch);
@@ -58,6 +48,16 @@ function findIndexByUuid(uuid) {
 //     const objMatch = allUsersArr.find(el => el.name.first === firstName && el.name.last === lastName);
 //     return allUsersArr.indexOf(objMatch);
 // }
+
+export function likeProfile(uuid, el) {
+    if (allUsersArr[findIndexByUuid(uuid)].like === false || allUsersArr[findIndexByUuid(uuid)].like === undefined) {
+        allUsersArr[findIndexByUuid(uuid)].like = true;
+        el.src = '../assets/heart-filled.png';
+    } else if (allUsersArr[findIndexByUuid(uuid)].like === true) {
+        allUsersArr[findIndexByUuid(uuid)].like = false;
+        el.src = '../assets/heart-unfilled.png';
+    }
+}
 
 export function setLocalStorage(lsKey, lsValue) {
     localStorage.setItem(lsKey, JSON.stringify(lsValue));

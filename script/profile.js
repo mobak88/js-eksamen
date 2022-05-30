@@ -1,6 +1,6 @@
 import { fetchData, clearHTML, firstLetterToUpperCase, setLocalStorage, checkLoggedInStatus, allUsersArr, likeProfileHandler, seeProfile } from './reusable-functions.js';
 
-const USER_API = 'https://randomuser.me/api/?inc=picture,gender,name,nat,dob,location,login';
+const USER_API = 'https://randomuser.me/api/?inc=picture,gender,name,nat,dob,location';
 const userArr = [];
 let userObj;
 

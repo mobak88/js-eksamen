@@ -38,7 +38,9 @@ function displayUserMap(lat, lon) {
     const map = L.map('map').setView([allUsersArr[i].location.coordinates.latitude, allUsersArr[i].location.coordinates.longitude], 14);
 
     const tileUrl = 'https://maps.geoapify.com/v1/tile/dark-matter-brown/{z}/{x}/{y}@2x.png?apiKey=df373db52e2d4a2892c47b1cf7037ae5';
-    const tiles = L.tileLayer(tileUrl);
+    const tiles = L.tileLayer(tileUrl, {
+        attribution: 'Powered by <a href="https://www.geoapify.com/" target="_blank">Geoapify</a> | © OpenStreetMap <a href="https://www.openstreetmap.org/copyright" target="_blank">contributors</a>'
+    });
     tiles.addTo(map);
     L.marker([lat, lon]).addTo(map);
 }
