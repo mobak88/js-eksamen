@@ -53,7 +53,7 @@ function findIndexByUuid(uuid) {
 // }
 
 export function likeProfile(uuid, el) {
-    if (allUsersArr[findIndexByUuid(uuid)].like === false || allUsersArr[findIndexByUuid(uuid)].like === undefined) {
+    if (allUsersArr[findIndexByUuid(uuid)].like === undefined || allUsersArr[findIndexByUuid(uuid)].like === false) {
         allUsersArr[findIndexByUuid(uuid)].like = true;
         el.src = '../assets/heart-filled.png';
     } else if (allUsersArr[findIndexByUuid(uuid)].like === true) {

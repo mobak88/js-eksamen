@@ -1,16 +1,52 @@
 import { fetchData, displayUsers, clearHTML, firstLetterToUpperCase, usersList, allUsersArr, checkLoggedInStatus, setLocalStorage } from './reusable-functions.js';
 
 const ALL_USERS_API = 'https://randomuser.me/api/?results=150&inc=picture,gender,name,nat,dob,location,login';
+const QUIZ_JSON = '../quiz.json';
 
 const searchField = document.querySelector('#search-users');
 const radioBtnMale = document.querySelector('#male');
 const radioBtnFemale = document.querySelector('#female');
 const radioBtnBoth = document.querySelector('#both');
 
-/* I could have made this func reusable, but that would have required to many params and nested calbacks to be practical */
-function checkIfUsersExist() {
+function generateRandomQuizAnswers(answers) {
+    const randNumber = Math.round(Math.random() * (answers.length - 1));
+    return randNumber;
+}
+
+function createQuizData(arr, quizData) {
+    arr.forEach(user => {
+        if (!user.hasOwnProperty('quizAnswers')) {
+            const randAnimal = generateRandomQuizAnswers(quizData[0].answers);
+            const randMovie = generateRandomQuizAnswers(quizData[0].answers);
+            const randHobby = generateRandomQuizAnswers(quizData[0].answers);
+
+            user.quizAnswers = {
+                faouriteAnimal: quizData[0].answers[randAnimal],
+                faouriteMovie: quizData[1].answers[randMovie],
+                faouriteHobby: quizData[2].answers[randHobby],
+            };
+        }
+    });
+
+    setLocalStorage('allUsers', arr);
+}
+
+async function getQuizData() {
+    await fetch(QUIZ_JSON)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            const quizData = [...data];
+            console.log(quizData);
+
+            createQuizData(allUsersArr, quizData);
+        });
+}
+
+async function checkIfUsersExist() {
     if (localStorage.getItem('allUsers') === null) {
-        fetchData(ALL_USERS_API, allUsersArr, usersList, displayUsers);
+        await fetchData(ALL_USERS_API, allUsersArr, usersList, displayUsers)
+            .then(() => getQuizData());
     } else {
         displayUsers(allUsersArr);
     }

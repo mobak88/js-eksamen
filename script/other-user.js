@@ -1,4 +1,4 @@
-import { likeProfile, setLocalStorage, allUsersArr } from './reusable-functions.js';
+import { likeProfileHandler, setLocalStorage, allUsersArr } from './reusable-functions.js';
 
 const i = JSON.parse(localStorage.getItem('otherUser'));
 const goBackBtn = document.querySelector('.go-back-btn');
@@ -14,24 +14,26 @@ function otherUserProfile() {
     const otherUser = document.querySelector('.other-users');
 
     otherUser.innerHTML = `
-        <li class='user-li'>
+        <li class='user-li' id=${allUsersArr[i].login.uuid}>
+            <h1>Profile</h1>
             <img class='user-img' src=${allUsersArr[i].picture.large} />
             <p>Name: ${allUsersArr[i].name.first} ${allUsersArr[i].name.last}</p>
             <p>Gender: ${allUsersArr[i].gender}</p>
             <p>Age: ${allUsersArr[i].dob.age}</p>
             <p>City: ${allUsersArr[i].location.city}</p>
             <p>Country: ${allUsersArr[i].location.country}</p>
+            <div>
+                <h2>Interests</h2>
+                <p>Favourite animal: ${allUsersArr[i].quizAnswers.faouriteAnimal.animal}</p>
+                <p>Favourite hobby: ${allUsersArr[i].quizAnswers.faouriteHobby.hobby}</p>
+                <p>Favourite movie: ${allUsersArr[i].quizAnswers.faouriteMovie.movie}</p>
+            </div>
             <img class='heart' src=${allUsersArr[i].like === true ? '../assets/heart-filled.png' : '../assets/heart-unfilled.png'} />
         </li>
     `;
-}
 
-function likeProfileHandler() {
-    const heart = document.querySelector('.heart');
-    heart.addEventListener('click', () => {
-        likeProfile(i, heart);
-        setLocalStorage('allUsers', allUsersArr);
-    });
+    console.log(allUsersArr[i].like);
+    console.log(allUsersArr[0]);
 }
 
 function displayUserMap(lat, lon) {
