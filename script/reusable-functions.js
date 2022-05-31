@@ -11,9 +11,7 @@ export async function fetchData(apiData, arr, el, callback) {
         const response = await fetch(apiData);
         const data = await response.json();
 
-        if (arr.length === 0) {
-            arr.push(...data.results);
-        }
+        arr.push(...data.results);
 
         callback(arr);
     }

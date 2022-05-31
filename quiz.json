@@ -1,35 +1,35 @@
 [
   {
     "question": "What is your favourite animal?",
-    "answers": {
-      "animal1": "Dog",
-      "animal2": "Cat",
-      "animal3": "Rabit",
-      "animal4": "Parrot",
-      "animal5": "Rat",
-      "animal6": "Goldfish"
-    }
+    "answers": [
+      { "animal1": "Dog" },
+      { "animal2": "Cat" },
+      { "animal3": "Rabit" },
+      { "animal4": "Parrot" },
+      { "animal5": "Rat" },
+      { "animal6": "Goldfish" }
+    ]
   },
   {
     "question": "What is your favourite movie?",
-    "answers": {
-      "movie1": "The Dark Knight",
-      "movie2": "Pulp Fiction",
-      "movie3": "The Lord of the Rings",
-      "movie4": "Star Wars",
-      "movie5": "Forrest Gump",
-      "movie6": "Rataouille"
-    }
+    "answers": [
+      { "movie1": "The Dark Knight" },
+      { "movie2": "Pulp Fiction" },
+      { "movie3": "The Lord of the Rings" },
+      { "movie4": "Star Wars" },
+      { "movie5": "Forrest Gump" },
+      { "movie6": "Rataouille" }
+    ]
   },
   {
     "question": "What is your favourite hobby?",
-    "answers": {
-      "hobby1": "Writing",
-      "hobby2": "Gardening",
-      "hobby3": "Dancing",
-      "hobby4": "Cooking",
-      "hobby5": "Training/sports",
-      "hobby6": "Reading books"
-    }
+    "answers": [
+      { "hobby1": "Writing" },
+      { "hobby2": "Gardening" },
+      { "hobby3": "Dancing" },
+      { "hobby4": "Cooking" },
+      { "hobby5": "Training/sports" },
+      { "hobby6": "Reading books" }
+    ]
   }
 ]

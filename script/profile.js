@@ -7,19 +7,40 @@ let userObj;
 const profileInfoUl = document.querySelector('.profile-info-ul');
 const newInfoContainer = document.querySelector('.new-info-container');
 
+/* Doing this to prevent XSS attacks */
+function sanitizeUserInput() {
+    const username = document.querySelector('.user-name');
+    const userGender = document.querySelector('.user-gender');
+    const userTitle = document.querySelector('.user-title');
+    const userAge = document.querySelector('.user-age');
+    const userCity = document.querySelector('.user-city');
+    const userCountry = document.querySelector('.user-country');
+    const userAbout = document.querySelector('.user-about');
+
+    username.textContent = 'Name: ' + `${userObj.name.first} ${userObj.name.last}`;
+    userGender.textContent = 'Gender: ' + `${firstLetterToUpperCase(userObj.gender)}`;
+    userTitle.textContent = 'Title: ' + `${userObj.name.title}`;
+    userAge.textContent = 'Age: ' + `${userObj.dob.age}`;
+    userCity.textContent = 'City: ' + `${userObj.location.city}`;
+    userCountry.textContent = 'Country: ' + `${userObj.location.country}`;
+    userAbout.textContent = `${userObj.about === '' ? '' : 'About: ' + userObj.about}`;
+}
+
 function singleUserTemplate(el) {
-    el.innerHTML += `
+    el.innerHTML = `
         <li class='user-li'>
             <img class='user-img' src=${userObj.picture.large} />
-            <p class='user-name'>Name: ${userObj.name.first} ${userObj.name.last}</p>
-            <p>Gender: ${firstLetterToUpperCase(userObj.gender)}</p>
-            <p>Title: ${userObj.name.title}</p>
-            <p>Age: ${userObj.dob.age}</p>
-            <p>City: ${userObj.location.city}</p>
-            <p class='user-country'>Country: ${userObj.location.country}</p>
-            <p class='user-about'>${userObj.about === '' ? '' : 'About: ' + userObj.about}</p>
+            <p class='user-name'></p>
+            <p class='user-gender'></p>
+            <p class='user-title'></p>
+            <p class='user-age'></p>
+            <p class='user-city'></p>
+            <p class='user-country'></p>
+            <p class='user-about'></p>
         </li>
     `;
+
+    sanitizeUserInput();
 }
 
 function deleteUserInfo() {
@@ -46,8 +67,8 @@ function editNewUserInfoTemplate(i) {
             id="edit-new-info-text"
             ></textarea>
         <div>
-        <button class="save-new-info">Save</button>
-        <button class="cancel-btn">Cancel</button>
+            <button class="save-new-info">Save</button>
+            <button class="cancel-btn">Cancel</button>
         </div>
     `;
 }
@@ -211,7 +232,7 @@ function updateUser() {
         userObj = {
             ...userObj,
             dob: {
-                age: userAge.value.trim() === '' ? userObj.dob.age : userAge.value.trim()
+                age: userAge.value.trim() === '' ? userObj.dob.age : sanitizeHTML(userAge.value.trim())
             },
             gender: userGender.value.trim() === '' ? userObj.gender : userGender.value.trim(),
             location: {
@@ -232,4 +253,4 @@ function updateUser() {
     });
 }
 
-updateUser();
+updateUser();;;

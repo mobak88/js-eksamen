@@ -1,32 +1,11 @@
 import { fetchData, displayUsers, clearHTML, firstLetterToUpperCase, usersList, allUsersArr, checkLoggedInStatus, setLocalStorage } from './reusable-functions.js';
 
 const ALL_USERS_API = 'https://randomuser.me/api/?results=150&inc=picture,gender,name,nat,dob,location,login';
-const QUIZ_JSON = '../quiz.json';
 
 const searchField = document.querySelector('#search-users');
 const radioBtnMale = document.querySelector('#male');
 const radioBtnFemale = document.querySelector('#female');
 const radioBtnBoth = document.querySelector('#both');
-
-async function getQuizData(arr) {
-    await fetch(QUIZ_JSON)
-        .then(res => res.json())
-        .then(data => console.log(data[0].answers));
-}
-
-
-/* Need ranNum as parameter to decide what quiz answer each user gets */
-function pushQuizData(arr) {
-    arr.forEach(user => {
-        if (!user.hasOwnProperty('quizAnswers')) {
-            user.quizAnswers = {
-                faouriteAnimal: 'test'
-            };
-        }
-    });
-
-    setLocalStorage('allUsers', arr);
-}
 
 /* I could have made this func reusable, but that would have required to many params and nested calbacks to be practical */
 function checkIfUsersExist() {
@@ -34,7 +13,6 @@ function checkIfUsersExist() {
         fetchData(ALL_USERS_API, allUsersArr, usersList, displayUsers);
     } else {
         displayUsers(allUsersArr);
-        pushQuizData(allUsersArr);
     }
 }
 
