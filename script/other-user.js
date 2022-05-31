@@ -1,4 +1,4 @@
-import { likeProfileHandler, setLocalStorage, allUsersArr } from './reusable-functions.js';
+import { likeProfileHandler, allUsersArr } from './reusable-functions.js';
 
 const i = JSON.parse(localStorage.getItem('otherUser'));
 const goBackBtn = document.querySelector('.go-back-btn');
@@ -31,9 +31,6 @@ function otherUserProfile() {
             <img class='heart' src=${allUsersArr[i].like === true ? '../assets/heart-filled.png' : '../assets/heart-unfilled.png'} />
         </li>
     `;
-
-    console.log(allUsersArr[i].like);
-    console.log(allUsersArr[0]);
 }
 
 function displayUserMap(lat, lon) {

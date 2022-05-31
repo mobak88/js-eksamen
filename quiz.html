@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="John Doe" />
-    <link rel="stylesheet" href="styles/other-user.css" />
+    <link rel="stylesheet" href="styles/quiz.css" />
     <link rel="stylesheet" href="styles/header.css" />
     <title>Quiz</title>
   </head>
@@ -39,7 +39,109 @@
       </div>
     </header>
     <main>
-      <h1>Test</h1>
+      <div class="quiz-form-container">
+        <h1>Interest quiz</h1>
+        <form class="quiz-form">
+          <p>What is your favourite animal?</p>
+          <input type="radio" id="dog" name="fav_animal" value="Dog" />
+          <label for="dog">Dog</label><br />
+          <input type="radio" id="cat" name="fav_animal" value="Cat" />
+          <label for="cat">Cat</label><br />
+          <input type="radio" id="rabit" name="fav_animal" value="Rabit" />
+          <label for="rabit">Rabit</label><br />
+          <input type="radio" id="parrot" name="fav_animal" value="Parrot" />
+          <label for="parrot">Parrot</label><br />
+          <input type="radio" id="rat" name="fav_animal" value="Rat" />
+          <label for="rat">Rat</label><br />
+          <input
+            type="radio"
+            id="goldfish"
+            name="fav_animal"
+            value="Goldfish"
+          />
+          <label for="goldfish">Goldfish</label><br />
+
+          <br />
+
+          <p>What is your favourite movie?</p>
+          <input
+            type="radio"
+            id="dark-knight"
+            name="fav_movie"
+            value="The Dark Knight"
+          />
+          <label for="dark-knight">The Dark Knight</label><br />
+          <input
+            type="radio"
+            id="pulp-fiction"
+            name="fav_movie"
+            value="Pulp Fiction"
+          />
+          <label for="pulp-fiction">Pulp Fiction</label><br />
+          <input
+            type="radio"
+            id="lord-of-the-rings"
+            name="fav_movie"
+            value="The Lord of the Rings"
+          />
+          <label for="lord-of-the-rings">The Lord of the Rings</label><br />
+          <input
+            type="radio"
+            id="star-wars"
+            name="fav_movie"
+            value="Star Wars"
+          />
+          <label for="star-wars">Star Wars</label><br />
+          <input
+            type="radio"
+            id="fprrest-gump"
+            name="fav_movie"
+            value="Forrest Gump"
+          />
+          <label for="fprrest-gump">Forrest Gump</label><br />
+          <input
+            type="radio"
+            id="rataouille"
+            name="fav_movie"
+            value="Rataouille"
+          />
+          <label for="rataouille">Rataouille</label><br />
+
+          <br />
+
+          <p>What is your favourite hobby?</p>
+          <input type="radio" id="writing" name="fav_hobby" value="Writing" />
+          <label for="writing">Writing</label><br />
+          <input
+            type="radio"
+            id="gardening"
+            name="fav_hobby"
+            value="Gardening"
+          />
+          <label for="gardening">Gardening</label><br />
+          <input type="radio" id="dancing" name="fav_hobby" value="Dancing" />
+          <label for="dancing">Dancing</label><br />
+          <input type="radio" id="cooking" name="fav_hobby" value="Cooking" />
+          <label for="cooking">Cooking</label><br />
+          <input
+            type="radio"
+            id="training-sports"
+            name="fav_hobby"
+            value="Training/sports"
+          />
+          <label for="training-sports">Training/sports</label><br />
+          <input
+            type="radio"
+            id="reading"
+            name="fav_hobby"
+            value="Reading books"
+          />
+          <label for="reading">Reading books</label><br />
+
+          <br />
+          <button class="quiz-form-btn">Submit</button>
+        </form>
+      </div>
       <p class="test"></p>
     </main>
     <script type="module" src="script/quiz.js"></script>
