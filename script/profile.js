@@ -232,7 +232,7 @@ function updateUser() {
         userObj = {
             ...userObj,
             dob: {
-                age: userAge.value.trim() === '' ? userObj.dob.age : sanitizeHTML(userAge.value.trim())
+                age: userAge.value.trim() === '' ? userObj.dob.age : userAge.value.trim()
             },
             gender: userGender.value.trim() === '' ? userObj.gender : userGender.value.trim(),
             location: {
@@ -253,4 +253,4 @@ function updateUser() {
     });
 }
 
-updateUser();;;
+updateUser();
