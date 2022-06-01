@@ -1,4 +1,4 @@
-import { setLocalStorage, allUsersArr, displayUsers, clearHTML, usersList } from './reusable-functions.js';
+import { setLocalStorage, allUsersArr, displayUsers, clearHTML, usersList, checkLoggedInStatus } from './reusable-functions.js';
 
 const quizFormBtn = document.querySelector('.quiz-form-btn');
 const myUser = JSON.parse(localStorage.getItem('userData'));
@@ -19,7 +19,7 @@ function addFavourites() {
     const favMovie = document.querySelector('[name="fav_movie"]:checked');
     const favHobby = document.querySelector('[name="fav_hobby"]:checked');
 
-    if ((favAnimal || favMovie || favHobby) === null) {
+    if (favAnimal === null || favMovie === null || favHobby === null) {
         alert('Please mark one radio button per category');
         return;
     } else {
@@ -64,5 +64,5 @@ function checkIfUserHasQuizAnswers() {
     }
 }
 
-checkIfUserDataExists();
+checkLoggedInStatus(checkIfUserDataExists);
 

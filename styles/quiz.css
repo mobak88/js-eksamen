@@ -64,3 +64,10 @@ main {
 .err-msg {
   margin-top: 100px;
 }
+
+.matchin-users-heading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
