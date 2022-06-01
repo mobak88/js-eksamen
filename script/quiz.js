@@ -11,7 +11,6 @@ function findMatchingUsers(myProfile) {
     const sameMovie = allUsersArr.filter(user => user.quizAnswers.faouriteHobby.hobby === myProfile.quizAnswers.faouriteHobby.hobby);
 
     const matchingUsers = [...sameAnimal, ...sameHobby, ...sameMovie];
-    console.log(matchingUsers, matchingUsers.length);
     displayUsers(matchingUsers);
 }
 
