@@ -63,6 +63,37 @@
 
           <br />
 
+          <p>What is your favourite hobby?</p>
+          <input type="radio" id="writing" name="fav_hobby" value="Writing" />
+          <label for="writing">Writing</label><br />
+          <input
+            type="radio"
+            id="gardening"
+            name="fav_hobby"
+            value="Gardening"
+          />
+          <label for="gardening">Gardening</label><br />
+          <input type="radio" id="dancing" name="fav_hobby" value="Dancing" />
+          <label for="dancing">Dancing</label><br />
+          <input type="radio" id="cooking" name="fav_hobby" value="Cooking" />
+          <label for="cooking">Cooking</label><br />
+          <input
+            type="radio"
+            id="training-sports"
+            name="fav_hobby"
+            value="Training/sports"
+          />
+          <label for="training-sports">Training/sports</label><br />
+          <input
+            type="radio"
+            id="reading"
+            name="fav_hobby"
+            value="Reading books"
+          />
+          <label for="reading">Reading books</label><br />
+
+          <br />
+
           <p>What is your favourite movie?</p>
           <input
             type="radio"
@@ -108,41 +139,16 @@
           <label for="rataouille">Rataouille</label><br />
 
           <br />
-
-          <p>What is your favourite hobby?</p>
-          <input type="radio" id="writing" name="fav_hobby" value="Writing" />
-          <label for="writing">Writing</label><br />
-          <input
-            type="radio"
-            id="gardening"
-            name="fav_hobby"
-            value="Gardening"
-          />
-          <label for="gardening">Gardening</label><br />
-          <input type="radio" id="dancing" name="fav_hobby" value="Dancing" />
-          <label for="dancing">Dancing</label><br />
-          <input type="radio" id="cooking" name="fav_hobby" value="Cooking" />
-          <label for="cooking">Cooking</label><br />
-          <input
-            type="radio"
-            id="training-sports"
-            name="fav_hobby"
-            value="Training/sports"
-          />
-          <label for="training-sports">Training/sports</label><br />
-          <input
-            type="radio"
-            id="reading"
-            name="fav_hobby"
-            value="Reading books"
-          />
-          <label for="reading">Reading books</label><br />
-
-          <br />
           <button class="quiz-form-btn">Submit</button>
         </form>
       </div>
-      <p class="test"></p>
+      <div class="matchin-users-container">
+        <h2>Matching Users</h2>
+        <ul class="users-list"></ul>
+      </div>
+      <div class="err-msg hidden">
+        <p>Please add more info about you, before taking the quiz!</p>
+      </div>
     </main>
     <script type="module" src="script/quiz.js"></script>
   </body>

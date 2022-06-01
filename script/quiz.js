@@ -1,40 +1,69 @@
-import { setLocalStorage, allUsersArr } from './reusable-functions.js';
+import { setLocalStorage, allUsersArr, displayUsers, clearHTML, usersList } from './reusable-functions.js';
 
 const quizFormBtn = document.querySelector('.quiz-form-btn');
+const myUser = JSON.parse(localStorage.getItem('userData'));
 
 function findMatchingUsers(myProfile) {
-    const matchingUsers = allUsersArr.filter(user => {
-        return (user.quizAnswers.faouriteAnimal.animal === myProfile.quizAnswers.faouriteAnimal.animal) && (user.quizAnswers.faouriteHobby.hobby === myProfile.quizAnswers.faouriteHobby.hobby);
-    });
+    const sameAnimal = allUsersArr.filter(user => user.quizAnswers.faouriteAnimal.animal === myProfile.quizAnswers.faouriteAnimal.animal);
 
-    console.log(matchingUsers);
+    const sameHobby = allUsersArr.filter(user => user.quizAnswers.faouriteHobby.hobby === myProfile.quizAnswers.faouriteHobby.hobby);
+
+    const sameMovie = allUsersArr.filter(user => user.quizAnswers.faouriteHobby.hobby === myProfile.quizAnswers.faouriteHobby.hobby);
+
+    const matchingUsers = [...sameAnimal, ...sameHobby, ...sameMovie];
+    console.log(matchingUsers, matchingUsers.length);
+    displayUsers(matchingUsers);
 }
 
-quizFormBtn.addEventListener('click', (e) => {
+function addFavourites() {
     const favAnimal = document.querySelector('[name="fav_animal"]:checked');
     const favMovie = document.querySelector('[name="fav_movie"]:checked');
     const favHobby = document.querySelector('[name="fav_hobby"]:checked');
-    e.preventDefault();
 
     if ((favAnimal || favMovie || favHobby) === null) {
-        console.log('err');
+        alert('Please mark one radio button per category');
         return;
     } else {
-        const user = JSON.parse(localStorage.getItem('userData'));
-
-        user.quizAnswers = {
+        myUser.quizAnswers = {
             faouriteAnimal: { animal: favAnimal.value },
-            faouriteHobby: { hobby: favMovie.value },
-            faouriteMovie: { movie: favHobby.value }
+            faouriteHobby: { hobby: favHobby.value },
+            faouriteMovie: { movie: favMovie.value }
         };
 
-        setLocalStorage('userData', user);
+        setLocalStorage('userData', myUser);
+        clearHTML(usersList);
+        findMatchingUsers(myUser);
     }
+}
+
+quizFormBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    addFavourites();
 });
 
-const user = JSON.parse(localStorage.getItem('userData'));
-console.log(allUsersArr);
-findMatchingUsers(user);
+function checkIfUserDataExists() {
+    const quizFormContainer = document.querySelector('.quiz-form-container');
+    const matchingUsersContainer = document.querySelector('.matchin-users-container');
+    const errMsg = document.querySelector('.err-msg');
 
+    if (localStorage.getItem('userData') === null) {
 
+        errMsg.classList.remove('hidden');
+        quizFormContainer.classList.add('hidden');
+        matchingUsersContainer.classList.add('hidden');
+    } else {
+        errMsg.classList.add('hidden');
+        quizFormContainer.classList.remove('hidden');
+        matchingUsersContainer.classList.remove('hidden');
+        checkIfUserHasQuizAnswers();
+    }
+}
+
+function checkIfUserHasQuizAnswers() {
+    if (myUser.hasOwnProperty('quizAnswers')) {
+        findMatchingUsers(myUser);
+    }
+}
+
+checkIfUserDataExists();
 

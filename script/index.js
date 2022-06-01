@@ -35,12 +35,10 @@ async function getQuizData() {
     await fetch(QUIZ_JSON)
         .then(res => res.json())
         .then(data => {
-            console.log(data);
             const quizData = [...data];
-            console.log(quizData);
-
             createQuizData(allUsersArr, quizData);
-        });
+        })
+        .catch(err => console.log(err));
 }
 
 async function checkIfUsersExist() {

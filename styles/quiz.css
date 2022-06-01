@@ -1,7 +1,66 @@
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
 .quiz-form-container {
+  background-color: rgb(236, 240, 243);
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  margin-top: 60px;
+  padding: 60px 0;
+}
+
+.users-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 80px;
+}
+
+.user-li {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(236, 240, 243);
+  padding: 25px 12px;
+  width: 200px;
+  gap: 12px;
+  align-items: center;
+}
+
+.user-img {
+  width: 128px;
+  height: 128px;
+}
+
+.see-profile {
+  padding: 10px;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.heart {
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+}
+
+.matchin-users-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.err-msg {
+  margin-top: 100px;
 }
