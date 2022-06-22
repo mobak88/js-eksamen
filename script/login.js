@@ -1,4 +1,4 @@
-import { setLocalStorage, port } from './reusable-functions.js';
+import { setLocalStorage, siteUrl } from './reusable-functions.js';
 
 const userName = 'test';
 const password = 'test123';
@@ -19,7 +19,7 @@ function validateForm() {
             feedback.textContent = 'Success';
             /* Used settimeout here to give the user a chance to see the success msg */
             setTimeout(() => {
-                document.location.href = `http://localhost:${port}`;
+                document.location.href = siteUrl;
             }, 200);
         } else if (typedUsername === userName && typedPassword !== password) {
             feedback.textContent = 'Wrong password';

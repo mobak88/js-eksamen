@@ -1,6 +1,7 @@
 export const usersList = document.querySelector('.users-list');
 export const allUsersArr = JSON.parse(localStorage.getItem('allUsers')) || [];
 export const port = window.location.port;
+export const siteUrl = 'https://js-exam-dating-app.netlify.app';
 
 function displayErr(el, err) {
     el.innerHTML = `Something went wrong: ${err}`;
@@ -84,7 +85,7 @@ export function seeProfile(arr, el) {
     for (let i = 0; i < arr.length; i++) {
         el[i].addEventListener('click', (e) => {
             setLocalStorage('otherUser', findIndexByUuid(e.target.parentNode.id));
-            document.location.href = `http://localhost:${port}/other-user.html`;
+            document.location.href = `${siteUrl}/other-user.html`;
         });
     }
 }
@@ -115,7 +116,7 @@ export function checkLoggedInStatus(callback) {
     const main = document.querySelector('main');
     if (!JSON.parse(localStorage.getItem('loggedIn')) || localStorage.getItem('loggedIn') === null) {
         main.classList.add('hidden');
-        document.location.href = `http://localhost:${port}/login.html`;
+        document.location.href = `${siteUrl}/login.html`;
     } else {
         main.classList.remove('hidden');
         callback();
