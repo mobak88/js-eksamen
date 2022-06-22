@@ -1,6 +1,5 @@
 export const usersList = document.querySelector('.users-list');
 export const allUsersArr = JSON.parse(localStorage.getItem('allUsers')) || [];
-export const port = window.location.port;
 export const siteUrl = 'https://js-exam-dating-app.netlify.app';
 
 function displayErr(el, err) {
