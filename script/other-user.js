@@ -1,4 +1,5 @@
 import { likeProfileHandler, allUsersArr } from './reusable-functions.js';
+import TILE_API_KEY from './apikey.js';
 
 const i = JSON.parse(localStorage.getItem('otherUser'));
 const goBackBtn = document.querySelector('.go-back-btn');
@@ -36,7 +37,7 @@ function otherUserProfile() {
 function displayUserMap(lat, lon) {
     const map = L.map('map').setView([allUsersArr[i].location.coordinates.latitude, allUsersArr[i].location.coordinates.longitude], 14);
 
-    const tileUrl = 'https://maps.geoapify.com/v1/tile/dark-matter-brown/{z}/{x}/{y}@2x.png?apiKey=df373db52e2d4a2892c47b1cf7037ae5';
+    const tileUrl = `https://maps.geoapify.com/v1/tile/dark-matter-brown/{z}/{x}/{y}@2x.png?apiKey=${TILE_API_KEY}`;
     const tiles = L.tileLayer(tileUrl, {
         attribution: 'Powered by <a href="https://www.geoapify.com/" target="_blank">Geoapify</a> | © OpenStreetMap <a href="https://www.openstreetmap.org/copyright" target="_blank">contributors</a>'
     });
